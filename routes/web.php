@@ -25,3 +25,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin'], function () {
     Route::resource('users', 'UserController');
 });
+
+Route::get('admin', function () {
+
+    return view('layouts.admin');
+
+});
