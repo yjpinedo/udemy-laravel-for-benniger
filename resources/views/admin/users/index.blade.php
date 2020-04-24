@@ -8,7 +8,7 @@
       <h3 class="card-title">Responsive Hover Table</h3>
 
       <div class="card-tools">
-            <a href="" class="btn btn-danger btn-flat ml-2"><i class="fas fa-plus"></i> Nuevo</a>
+            <a href="{{ route('users.create') }}" class="btn btn-danger btn-flat ml-2"><i class="fas fa-plus"></i> Nuevo</a>
       </div>
     </div>
     <!-- /.card-header -->
