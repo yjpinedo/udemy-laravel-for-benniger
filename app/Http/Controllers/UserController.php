@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserCreateRequest;
 use Illuminate\Http\Request;
 use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -15,12 +17,13 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::get();
+        return view('admin.users.create', ['roles' => $roles]);
     }
 
-    public function store(Request $request)
+    public function store(UserCreateRequest $request)
     {
-        //
+        return $request->all();
     }
 
     public function show($id)
