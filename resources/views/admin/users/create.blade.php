@@ -43,9 +43,9 @@
                 <div class="form-group">
                     <label>Is Active</label>
                     <select class="form-control" name="is_active">
-                        <option value="" {{ old('is_active') == "" ? 'selected' : ''}}>Choose option</option>
-                      <option value="0" {{ old('is_active') == "0" ? 'selected' : ''}}>Not active</option>
-                      <option value="1" {{ old('is_active') == "1" ? 'selected' : ''}}>Active</option>
+                        <option value="" {{ old('is_active') == "" ? 'selected' : ""}}>Choose option</option>
+                      <option value="0" {{ old('is_active') == "0" ? 'selected' : ""}}>Not active</option>
+                      <option value="1" {{ old('is_active') == "1" ? 'selected' : ""}}>Active</option>
                     </select>
                 </div>
                 <div class="form-group">
