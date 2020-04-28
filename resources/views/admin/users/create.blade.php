@@ -5,17 +5,7 @@
 @section('content-title', 'Create User')
 
 @section('content-body')
-    @if (count($errors) > 0)
-        <div class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @include('partials.errors-validation')
     <div class="card ">
         <div class="card-header">
             <h3 class="card-title"><strong>Create User</strong></h3>
@@ -70,14 +60,14 @@
 @endsection
 
 @section('scripts-add')
-<script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-<script src="{{ asset('dist/js/demo.js') }}"></script>
+    <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+    <script src="{{ asset('dist/js/demo.js') }}"></script>
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
-    $(document).ready(function () {
-      bsCustomFileInput.init();
-    });
+    <script type="text/javascript">
+        $(document).ready(function () {
+        bsCustomFileInput.init();
+        });
     </script>
 @endsection
