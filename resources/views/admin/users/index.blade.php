@@ -25,6 +25,7 @@
         <thead>
           <tr>
             <th>N°</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
@@ -37,6 +38,13 @@
           @forelse ($users as $user)
           <tr>
             <td>{{ $user->id }}</td>
+            <td>
+              @isset($user->image)
+                <img src="{{ asset($user->image->file) }}" class="img-size-50">
+              @else
+              <span>Not Image</span>
+              @endisset
+            </td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
             <td>
@@ -57,7 +65,7 @@
             <td class="text-center">
               <form action="#">
                   <a href="#" class="btn btn-light btn-sm"><i class="fas fa-eye"></i></a>
-                  <a href="#" class="btn btn-light btn-sm"><i class="fas fa-edit"></i></a>
+                  <a href="{{ route('users.edit', $user->id) }}" class="btn btn-light btn-sm"><i class="fas fa-edit"></i></a>
                   <a href="#" class="btn btn-light btn-sm"><i class="fas fa-trash-restore"></i></a>
               </form>
             </td>

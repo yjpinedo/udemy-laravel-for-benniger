@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('role')->latest()->paginate(10);
+        $users = User::with('role', 'image')->latest()->paginate(10);
         return view('admin.users.index', ['users' => $users]);
     }
 
@@ -30,6 +30,8 @@ class UserController extends Controller
        if ($file = $request->file('image_id')) {
            $nameFile = time() . $file->getClientOriginalName();
 
+           $file->move('img', $nameFile);
+
             $image = Image::create(['file' => $nameFile]);
 
             $input['image_id'] = $image->id;
@@ -38,6 +40,8 @@ class UserController extends Controller
         $input['password'] = Hash::make($input['password']);
 
         User::create($input);
+
+        return redirect()->route('users.index')->with('status', 'Usuario guardado con éxito');
 
     }
 
@@ -48,7 +52,9 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        return view('admin.users.edit');
+        $roles = Role::get();
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     public function update(Request $request, $id)
