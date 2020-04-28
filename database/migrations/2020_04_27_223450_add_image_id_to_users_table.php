@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRoleIdToUserTable extends Migration
+class AddImageIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddRoleIdToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('role_id')->nullable()->after('password');
-            $table->foreign('role_id')->references('id')->on('roles');
+            $table->unsignedBigInteger('image_id')->nullable()->after('is_active');
+            $table->foreign('image_id')->references('id')->on('images');
         });
     }
 
@@ -27,7 +27,7 @@ class AddRoleIdToUserTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role_id');
+            $table->dropColumn('image_id');
         });
     }
 }

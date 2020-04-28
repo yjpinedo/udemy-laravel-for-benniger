@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
+use App\Image;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -23,7 +25,20 @@ class UserController extends Controller
 
     public function store(UserCreateRequest $request)
     {
-        User::create($request->all());
+       $input = $request->all();
+       
+       if ($file = $request->file('image_id')) {
+           $nameFile = time() . $file->getClientOriginalName();
+
+            $image = Image::create(['file' => $nameFile]);
+
+            $input['image_id'] = $image->id;
+        }
+        
+        $input['password'] = Hash::make($input['password']);
+
+        User::create($input);
+
     }
 
     public function show($id)

@@ -28,7 +28,7 @@ class UserCreateRequest extends FormRequest
             'email'     => 'required|string|email|unique:users,email',
             'role_id'   => 'required|numeric',  
             'password'  => 'required|string|min:8',
-            'file'      => 'required'
+            'image_id'  => 'required'
         ];
 
         if ($this->get('is_active') == ""){

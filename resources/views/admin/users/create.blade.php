@@ -49,9 +49,9 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="file">File</label>
+                    <label for="image_id">File</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile" name="file">
+                        <input type="file" class="custom-file-input" id="customFile" name="image_id">
                         <label class="custom-file-label" for="customFile">Choose file</label>
                     </div>
                 </div>

@@ -32,9 +32,12 @@ class DatabaseSeeder extends Seeder
             'role_id' => 1
         ]);
 
-        factory(App\User::class, 40)->create([
-            'is_active' => rand(0,1),
-            'role_id' => 2
-        ]);
+        for ($i=0; $i < 40; $i++) { 
+            factory(App\User::class)->create([
+                'is_active' => rand(0,1),
+                'role_id' => 2
+            ]);
+        }
+        
     }
 }
