@@ -42,7 +42,7 @@
               @isset($user->image)
                 <img src="{{ asset($user->image->file) }}" class="img-size-50">
               @else
-              <span>Not Image</span>
+              <img src="{{ asset('img/guest.png') }}" alt="" class="img-size-50">
               @endisset
             </td>
             <td>{{ $user->name }}</td>

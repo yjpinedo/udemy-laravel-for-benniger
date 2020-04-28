@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserCreateRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Image;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -57,9 +59,39 @@ class UserController extends Controller
         return view('admin.users.edit', ['user' => $user, 'roles' => $roles]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        //
+
+        $request->validate([
+            'name'    => 'required|string|unique:users,name,'.$id,
+            'email'   => 'required|string|email|unique:users,email,'.$id,
+        ]);
+
+       $user = User::findOrFail($id);    
+
+       $input = $request->all();
+       
+       if ($file = $request->file('image_id')) {
+           $nameFile = time() . $file->getClientOriginalName();
+
+           $file->move('img', $nameFile);
+
+            $image = Image::create(['file' => $nameFile]);
+
+            $input['image_id'] = $image->id;
+        } else {
+            $input = Arr::except($input,['image_id']);
+        }
+        
+        if(!empty(trim($input['password']))){
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = Arr::except($input,['password']);
+        }
+
+        $user->update($input);
+
+        return redirect()->route('users.index')->with('status', 'Usuario actualizado con éxito');
     }
 
     public function destroy($id)
