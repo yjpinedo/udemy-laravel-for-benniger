@@ -3,6 +3,7 @@
 @section('title', 'Users - Index')
 
 @section('content-body')
+@include('partials.session-message')
 <div class="card">
     <div class="card-header">
       <h3 class="card-title">Responsive Hover Table</h3>
@@ -63,10 +64,12 @@
             </td>
             <td>{{ $user->created_at->diffForHumans() }}</td>
             <td class="text-center">
-              <form action="#">
+              <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                  @csrf @method('DELETE')
                   <a href="#" class="btn btn-light btn-sm"><i class="fas fa-eye"></i></a>
                   <a href="{{ route('users.edit', $user->id) }}" class="btn btn-light btn-sm"><i class="fas fa-edit"></i></a>
-                  <a href="#" class="btn btn-light btn-sm"><i class="fas fa-trash-restore"></i></a>
+                  <button class="btn btn-light btn-sm"><i class="fas fa-trash-restore"></i>
+                  </button>
               </form>
             </td>
           </tr>
