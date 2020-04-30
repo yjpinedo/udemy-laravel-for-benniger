@@ -26,11 +26,10 @@
           <thead>
             <tr>
               <th>N°</th>
-              <th>image_id</th>
-              <th>user_id</th>
+              <th>category_id</th>
               <th>title</th>
               <th>created at</th>
-              <th colspan="3" class="text-center">Actions</th>
+              <th colspan="40" class="text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -38,17 +37,10 @@
             <tr>
               <td>{{ $post->id }}</td>
               <td>
-                @isset($post->image)
-                  <img src="{{ asset($post->image->file) }}" class="img-size-50">
+                @isset($post->category)
+                  <span>{{ $post->category->name }}</span>
                 @else
-                <img src="{{ asset('img/guest.png') }}" alt="" class="img-size-50">
-                @endisset
-              </td>
-              <td>
-                @isset($post->user)
-                  <span>{{ $post->user->name }}</span>
-                @else
-                  <span>No tiene usuarios</span>
+                  <span>No tiene categoria</span>
                 @endisset
               </td>
               <td>{{ $post->title }}</td>

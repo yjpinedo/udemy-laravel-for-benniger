@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'body', 'user_id', 'image_id'];
+    protected $fillable = ['title', 'body', 'user_id', 'category_id', 'image_id'];
 
     public function user()
     {
@@ -16,6 +16,11 @@ class Post extends Model
     public function image()
     {
         return $this->belongsTo(Image::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
 
