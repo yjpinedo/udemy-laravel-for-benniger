@@ -15,7 +15,7 @@ class Post extends Model
 
     public function image()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Image::class);
     }
 
 

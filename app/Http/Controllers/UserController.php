@@ -27,6 +27,11 @@ class UserController extends Controller
 
     public function store(UserCreateRequest $request)
     {
+        $request->validate([
+            'name'    => 'required|string|unique:users,name,',
+            'email'   => 'required|string|email|unique:users,email,',
+        ]);
+
        $input = $request->all();
        
        if ($file = $request->file('image_id')) {

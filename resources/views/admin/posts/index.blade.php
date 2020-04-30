@@ -30,7 +30,6 @@
               <th>user_id</th>
               <th>title</th>
               <th>created at</th>
-              <th>update at</th>
               <th colspan="3" class="text-center">Actions</th>
             </tr>
           </thead>
@@ -54,7 +53,6 @@
               </td>
               <td>{{ $post->title }}</td>
               <td>{{ $post->created_at->diffForHumans() }}</td>
-              <td>{{ $post->updated_at->diffForHumans() }}</td>
               <td class="text-center">
                 <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                     @csrf @method('DELETE')

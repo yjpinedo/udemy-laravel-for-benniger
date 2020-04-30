@@ -39,11 +39,15 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        factory(App\Category::class, 5)->create();
+
         $users = App\User::all();
+        $categories = App\Category::all();
 
         for ($i=0; $i < 100; $i++) { 
             factory(App\Post::class)->create([
                 'user_id' => rand(1, count($users)),
+                'category_id' => rand(1, count($categories)),
             ]);
         }    
             
