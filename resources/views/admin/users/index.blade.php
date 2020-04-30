@@ -6,7 +6,7 @@
 @include('partials.session-message')
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Responsive Hover Table</h3>
+      <h3 class="card-title">Users</h3>
 
       <div class="card-tools">
             <a href="{{ route('users.create') }}" class="btn btn-danger btn-flat ml-2"><i class="fas fa-plus"></i> Nuevo</a>

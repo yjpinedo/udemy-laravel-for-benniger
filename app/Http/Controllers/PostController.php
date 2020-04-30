@@ -7,14 +7,12 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $posts = Post::with('user')
+                     ->latest()
+                     ->paginate(10);
+        return view('admin.posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -24,7 +22,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**

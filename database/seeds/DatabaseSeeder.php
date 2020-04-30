@@ -38,6 +38,14 @@ class DatabaseSeeder extends Seeder
                 'role_id' => 2
             ]);
         }
-        
+
+        $users = App\User::all();
+
+        for ($i=0; $i < 100; $i++) { 
+            factory(App\Post::class)->create([
+                'user_id' => rand(1, count($users)),
+            ]);
+        }    
+            
     }
 }
