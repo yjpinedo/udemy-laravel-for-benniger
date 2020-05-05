@@ -25,6 +25,14 @@
               </p>
             </a>
           </li>
+            <li class="nav-item">
+                <a href="{{ route('medias.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-photo-video"></i>
+                    <p>
+                        Media
+                    </p>
+                </a>
+            </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-list-ul"></i>
