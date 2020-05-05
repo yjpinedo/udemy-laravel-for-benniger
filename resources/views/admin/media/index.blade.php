@@ -3,62 +3,40 @@
 @section('title', 'Media')
 
 @section('content-body')
-    @include('partials.errors-validation')
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title"><strong>Create Media</strong></h3>
-        </div>
-        <div class="card-body">
-            <form class="" action="{{ route('medias.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <label for="image_id">File</label>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile" name="image_id">
-                        <label class="custom-file-label" for="customFile">Choose file</label>
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <button type="submit" class="btn btn-danger btn-flat"><i class="fas fa-paper-plane"></i> Send</button>
-                </div>
-            </form>
-        </div>
-        <!-- /.card-body -->
-
-    </div>
-
     <div class="card">
         <div class="card-header">
             <h3 class="card-title"><strong>Images</strong></h3>
+            <a href="{{ route('medias.create') }}" class="btn btn-primary float-right btn-flat"><i class="fas fa-plus-circle"></i> Nuevo</a>
         </div>
-        <div class="d-flex">
-            @foreach($images as $image)
-                <div class="card-body">
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ asset($image->file) }}"  height="200" class="card-img-top" alt="">
+        <div class="row">
+                @foreach($images as $image)
+                    <div class="col-md-4">
                         <div class="card-body">
-                            <div class="">
-                                <h5 class="">{{ $image->file }}</h5>
-                                <p class="text-right m-0 p-0"><em class="text-cyan">{{ $image->created_at->diffForHumans() }}</em></p>
+                            <div class="card">
+                                <img src="{{ $image->imageExisting() ? asset($image->file) : asset('img/default-image.jpg') }}"  height="200" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h5 class="text-center">{{ $image->file }}</h5>
+                                    <hr>
+                                    <form action="{{ route('medias.destroy', $image->id) }}" method="post">
+                                        @csrf @method('DELETE')
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                            <p class="text-right m-0 p-0"><em class="text-cyan">{{ $image->created_at->diffForHumans() }}</em></p>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
         </div>
         <!-- /.card-body -->
+        <div class="card-footer bg-white">
+            <div class="d-flex justify-content-between align-item-center">
+                Showing {!! $images->firstItem() !!} to {!! $images->lastItem() !!} of {!! $images->total() !!} entries
+                {!! $images->links() !!}
+            </div>
+        </div>
     </div>
 @endsection
 
-@section('scripts-add')
-    <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-    <script src="{{ asset('dist/js/demo.js') }}"></script>
-@endsection
-
-@section('scripts')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            bsCustomFileInput.init();
-        });
-    </script>
-@endsection
