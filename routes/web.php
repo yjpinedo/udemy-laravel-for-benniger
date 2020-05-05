@@ -12,6 +12,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('categories', 'CategoryController');
     Route::resource('posts', 'PostController');
     Route::resource('medias', 'MediaController');
+    Route::resource('comments', 'CommentController');
+    Route::resource('replies', 'ReplyController');
 });
 
 
