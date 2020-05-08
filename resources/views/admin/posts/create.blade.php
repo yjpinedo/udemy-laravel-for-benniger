@@ -2,6 +2,10 @@
 
 @section('title', 'Create Post')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
+@endsection
+
 @section('content-body')
     @include('partials.errors-validation')
     <div class="card ">
@@ -52,9 +56,11 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
         bsCustomFileInput.init();
+        $('#body').summernote()
         });
     </script>
 @endsection

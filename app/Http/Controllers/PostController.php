@@ -93,4 +93,11 @@ class PostController extends Controller
         return redirect()->route('posts.index')
                          ->with('status', 'Post eliminado con éxito');
     }
+
+    public function post($id)
+    {
+        $post = Post::with('user', 'image')->findOrFail($id);
+        $comments = $post->comments->where('is_active', 1);
+        return view('post', ['post' => $post, 'comments' => $comments]);
+    }
 }

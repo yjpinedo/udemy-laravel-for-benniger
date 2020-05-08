@@ -54,6 +54,12 @@
                   <p>Posts</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('comments.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Comments</p>
+                </a>
+              </li>
             </ul>
           </li>
         </ul>

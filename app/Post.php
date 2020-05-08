@@ -8,9 +8,14 @@ class Post extends Model
 {
     protected $fillable = ['title', 'body', 'user_id', 'category_id', 'image_id'];
 
-    public function user()
+    public function category()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function comments()
+    {
+        return $this->HasMany(Comment::class);
     }
 
     public function image()
@@ -18,9 +23,9 @@ class Post extends Model
         return $this->belongsTo(Image::class);
     }
 
-    public function category()
+    public function user()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(User::class);
     }
 
 

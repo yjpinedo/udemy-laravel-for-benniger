@@ -48,8 +48,10 @@
               <td class="text-center">
                 <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                     @csrf @method('DELETE')
-                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-light btn-sm"><i class="fas fa-edit"></i></a>
-                    <button class="btn btn-light btn-sm"><i class="fas fa-trash-restore"></i>
+                    <a href="{{ route('posts.post', $post->id) }}" class="btn btn-outline-warning border-0 btn-sm"><i class="fas fa-blog" title="Post"></i></a>
+                    <a href="{{ route('comments.show', $post->id) }}" class="btn btn-outline-info border-0 btn-sm"><i class="fas fa-comment-dots" title="Comments"></i></a>
+                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-outline-secondary border-0 btn-sm" title="Edit"><i class="fas fa-edit"></i></a>
+                    <button class="btn btn-outline-danger border-0 btn-sm" title="Delete"><i class="fas fa-trash-restore"></i>
                     </button>
                 </form>
               </td>
